@@ -10,6 +10,16 @@ import UIKit
 
 class BookTableViewCell: UITableViewCell {
     
+    // MARK: Properties
+    var book: Book? {
+        didSet {
+            updateView()
+        }
+    }
+    
+    var delegate: BookTableViewCellDelegate?
+    
+    
     // MARK: Outlets
     @IBOutlet weak var bookLabel: UILabel!
     @IBOutlet weak var bookButton: UIButton!
@@ -20,15 +30,23 @@ class BookTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
     // MARK: Actions
     @IBAction func bookButtonTapped(_ sender: UIButton) {
+        delegate?.toggleHasBeenRead(for: self)
     }
     
+    // MARK: Methods
+    private func updateView() {
+        guard let book = book else { return }
+        
+        bookLabel.text = book.title
+        if book.hasBeenRead {
+            let buttonImage = UIImage(named: "checked")
+            bookButton.setImage(buttonImage, for: .normal)
+        } else {
+            let buttonImage = UIImage(named: "unchecked")
+            bookButton.setImage(buttonImage, for: .normal)
+        }
+    }
     
 }
