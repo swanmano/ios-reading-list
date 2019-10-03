@@ -31,4 +31,18 @@ class BookController {
             print("Error saving books data: \(error)")
         }
     }
+    
+    func loadFromPersistentStore() {
+        let filemanager = FileManager.default
+        guard let url = readingListURL,
+            filemanager.fileExists(atPath: url.path) else { return }
+        
+        do {
+            let data = try Data(contentsOf: url)
+            let decoder = PropertyListDecoder()
+            books = try decoder.decode([Book].self, from: data)
+        } catch {
+            print("Error loading books data: \(error)")
+        }
+    }
 }
