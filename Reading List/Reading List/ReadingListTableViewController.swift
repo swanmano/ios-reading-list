@@ -45,11 +45,22 @@ class ReadingListTableViewController: UITableViewController {
             return bookController.unreadBook.count
         }
     }
+    
+    // Function separates the two sections of "Read Books" and "Unread Books", creates an array for each and then returns the correck book based on the indexpath.row
+    private func bookFor(indexPath: IndexPath) -> Book {
+            let readBooks = bookController.readBook
+            let unreadBooks = bookController.unreadBook
+        if indexPath.section == 0 {
+            return readBooks[indexPath.row]
+        } else {
+            return unreadBooks[indexPath.row]
+        }
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
-
-        // Configure the cell...
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as? BookTableViewCell else { fatalError() }
+        let book = bookFor(indexPath: indexPath)
+        cell.book = book
 
         return cell
     }
