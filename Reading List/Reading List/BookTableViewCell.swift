@@ -25,11 +25,6 @@ class BookTableViewCell: UITableViewCell {
     @IBOutlet weak var bookButton: UIButton!
     
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
     // MARK: Actions
     @IBAction func bookButtonTapped(_ sender: UIButton) {
         delegate?.toggleHasBeenRead(for: self)
@@ -50,3 +45,4 @@ class BookTableViewCell: UITableViewCell {
     }
     
 }
+
