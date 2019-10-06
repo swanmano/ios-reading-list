@@ -90,3 +90,13 @@ class ReadingListTableViewController: UITableViewController {
     */
 
 }
+
+    // The function takes the cell from the bookButtonHasBeenTapped in BookTableViewCell, gets the index path and calls updateHasBeenRead in order to toggle the value
+extension ReadingListTableViewController: BookTableViewCellDelegate {
+    func toggleHasBeenRead(for cell: BookTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        bookController.updateHasBeenRead(for: bookFor(indexPath: indexPath))
+    }
+    
+    
+}
