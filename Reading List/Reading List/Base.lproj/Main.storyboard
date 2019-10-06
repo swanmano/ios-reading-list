@@ -50,6 +50,7 @@
                                 <connections>
                                     <outlet property="bookButton" destination="YkI-As-PkD" id="bUl-fg-K6F"/>
                                     <outlet property="bookLabel" destination="Vq1-Wh-PI8" id="oA1-4k-WrO"/>
+                                    <segue destination="ecW-qC-gRq" kind="show" identifier="EditBookSegue" id="iZv-MU-g7n"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -142,4 +143,7 @@
             <point key="canvasLocation" x="184" y="151"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="iZv-MU-g7n"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -76,16 +76,22 @@ class ReadingListTableViewController: UITableViewController {
     }
 
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "AddBookSegue" {
+            guard let bookDetailVC = segue.destination as? BookDetailViewController else { fatalError() }
+//            bookDetailVC.delete(self)
+            bookDetailVC.bookController = bookController
+            bookDetailVC.book = nil
+        } else if segue.identifier == "EditBookSegue" {
+            if let indexPath = tableView.indexPathForSelectedRow,
+                let bookDetailVC = segue.destination as? BookDetailViewController {
+                bookDetailVC.book = bookController.books[indexPath.row]
+            }
+        }
     }
-    */
 
+    
 }
 
     // The function takes the cell from the bookButtonHasBeenTapped in BookTableViewCell, gets the index path and calls updateHasBeenRead in order to toggle the value
