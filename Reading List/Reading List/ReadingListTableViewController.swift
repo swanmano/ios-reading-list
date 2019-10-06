@@ -83,6 +83,9 @@ class ReadingListTableViewController: UITableViewController {
 //            bookDetailVC.delete(self)
             bookDetailVC.bookController = bookController
             bookDetailVC.book = nil
+            tableView.reloadData()
+            bookController.saveToPersistentStore()
+            
         } else if segue.identifier == "EditBookSegue" {
             if let indexPath = tableView.indexPathForSelectedRow,
                 let bookDetailVC = segue.destination as? BookDetailViewController {
