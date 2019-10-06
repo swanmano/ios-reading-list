@@ -79,32 +79,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="UIK-9h-7ls">
-                                <rect key="frame" x="8" y="96" width="398" height="300"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter book title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ohi-wM-miz">
-                                        <rect key="frame" x="0.0" y="0.0" width="126.5" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Reason to read: " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iqP-cI-S6d">
-                                        <rect key="frame" x="0.0" y="54" width="240" height="246"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="DbT-Aa-8tA"/>
-                                </constraints>
-                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter book title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ohi-wM-miz">
+                                <rect key="frame" x="8" y="96" width="398" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Reason to read: " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iqP-cI-S6d">
+                                <rect key="frame" x="8" y="150" width="398" height="312"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="z57-06-Epp" firstAttribute="trailing" secondItem="UIK-9h-7ls" secondAttribute="trailing" constant="8" id="Cmu-zS-Xlp"/>
-                            <constraint firstItem="UIK-9h-7ls" firstAttribute="top" secondItem="z57-06-Epp" secondAttribute="top" constant="8" id="IHy-hS-X5q"/>
-                            <constraint firstItem="UIK-9h-7ls" firstAttribute="leading" secondItem="z57-06-Epp" secondAttribute="leading" constant="8" id="r1C-cR-KK9"/>
+                            <constraint firstItem="z57-06-Epp" firstAttribute="trailing" secondItem="Ohi-wM-miz" secondAttribute="trailing" constant="8" id="R2t-3Q-ysg"/>
+                            <constraint firstItem="Ohi-wM-miz" firstAttribute="leading" secondItem="z57-06-Epp" secondAttribute="leading" constant="8" id="SUH-lo-VaR"/>
+                            <constraint firstItem="iqP-cI-S6d" firstAttribute="top" secondItem="Ohi-wM-miz" secondAttribute="bottom" constant="20" id="VAk-Cn-yU1"/>
+                            <constraint firstItem="Ohi-wM-miz" firstAttribute="top" secondItem="z57-06-Epp" secondAttribute="top" constant="8" id="evZ-JN-6z6"/>
+                            <constraint firstItem="z57-06-Epp" firstAttribute="trailing" secondItem="iqP-cI-S6d" secondAttribute="trailing" constant="8" id="iB7-WG-yA9"/>
+                            <constraint firstItem="z57-06-Epp" firstAttribute="bottom" secondItem="iqP-cI-S6d" secondAttribute="bottom" constant="400" id="plY-8A-ypy"/>
+                            <constraint firstItem="iqP-cI-S6d" firstAttribute="leading" secondItem="z57-06-Epp" secondAttribute="leading" constant="8" id="ueE-ga-nlh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="z57-06-Epp"/>
                     </view>
