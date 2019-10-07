@@ -27,7 +27,6 @@ class BookTableViewCell: UITableViewCell {
 
     // MARK: Actions
     @IBAction func bookButtonTapped(_ sender: UIButton) {
-        print("button was tapped")
         delegate?.toggleHasBeenRead(for: self)
         updateView()
     }

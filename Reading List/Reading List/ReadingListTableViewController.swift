@@ -85,7 +85,7 @@ class ReadingListTableViewController: UITableViewController {
                 let bookDetailVC = segue.destination as? BookDetailViewController {
                 bookDetailVC.delegate = self
                 bookDetailVC.bookController = bookController
-                bookDetailVC.existingBook = bookController.books[indexPath.row]
+                bookDetailVC.existingBook = bookFor(indexPath: indexPath)
             }
         }
     }
