@@ -12,16 +12,16 @@ class BookController {
     
     // MARK: Properties
     var books: [Book] = []
-    
     var readBook: [Book] {
         books.filter({$0.hasBeenRead == true})
     }
-    
     var unreadBook: [Book] {
         books.filter({$0.hasBeenRead == false})
     }
     
-    // TODO: possibly write an init for savetopersistentstore() here?
+    init() {
+        loadFromPersistentStore()
+    }
     
     // MARK: Saving and loading to/from property list
     private var readingListURL: URL? {
@@ -53,7 +53,8 @@ class BookController {
         do {
             let data = try Data(contentsOf: url)
             let decoder = PropertyListDecoder()
-            books = try decoder.decode([Book].self, from: data)
+            let decodedBooks = try decoder.decode([Book].self, from: data)
+            books = decodedBooks
         } catch {
             print("Error loading books data: \(error)")
         }
@@ -74,14 +75,18 @@ class BookController {
         saveToPersistentStore()
     }
     
-    func updateHasBeenRead(for book: Book) -> Book {
+    // deleted the return of type Book
+    func updateHasBeenRead(for book: Book) {
         var book = book
         book.hasBeenRead.toggle()
-        return book
+        saveToPersistentStore()
+ //       return book
     }
     
     // TODO: create a working editBook function
     func editBook(for book: Book) -> Book {
+        
+        saveToPersistentStore()
         return book
     }
 }
