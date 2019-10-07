@@ -13,6 +13,7 @@ class BookDetailViewController: UIViewController {
     // MARK: Properties
     var bookController: BookController?
     var book: Book?
+    var delegate: BookDetailVCDelegate?
     
     // MARK: Outlets
     @IBOutlet weak var bookTitleText: UITextField!
@@ -32,13 +33,13 @@ class BookDetailViewController: UIViewController {
         if book == nil {
             guard let title = bookTitleText.text, !title.isEmpty,
                 let reasonToRead = reasonToReadText.text, !reasonToRead.isEmpty else { return }
-            bookController?.create(bookTitle: title, reasonToRead: reasonToRead)
+            delegate?.bookWasCreated(Book(title: title, reasonToRead: reasonToRead))
             self.navigationController?.popViewController(animated: true)
         } else {
             guard let title = bookTitleText.text, !title.isEmpty,
                 let reasonToRead = reasonToReadText.text, !reasonToRead.isEmpty else { return }
                 let book = Book(title: title, reasonToRead: reasonToRead)
-            bookController?.editBook(for: book)
+            delegate?.bookWasCreated(book)
             self.navigationController?.popViewController(animated: true)
         }
     }

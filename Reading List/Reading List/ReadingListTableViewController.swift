@@ -16,11 +16,6 @@ class ReadingListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -80,7 +75,7 @@ class ReadingListTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddBookSegue" {
             guard let bookDetailVC = segue.destination as? BookDetailViewController else { fatalError() }
-//            bookDetailVC.delete(self)
+            bookDetailVC.delegate = self
             bookDetailVC.bookController = bookController
             bookDetailVC.book = nil
             tableView.reloadData()
@@ -101,8 +96,18 @@ class ReadingListTableViewController: UITableViewController {
 extension ReadingListTableViewController: BookTableViewCellDelegate {
     func toggleHasBeenRead(for cell: BookTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        bookController.updateHasBeenRead(for: bookFor(indexPath: indexPath))
+        let book = bookController.updateHasBeenRead(for: bookFor(indexPath: indexPath))
+        return book
         tableView.reloadData()
     }
+}
+
+extension ReadingListTableViewController: BookDetailVCDelegate {
+    func bookWasCreated(_ book: Book) {
+        bookController.create(bookTitle: book.title, reasonToRead: book.reasonToRead)
+        tableView.reloadData()
+    }
+    
+    
 }
 
