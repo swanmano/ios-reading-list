@@ -85,9 +85,9 @@ class BookController {
     }
     
     // TODO: create a working editBook function
-    func editBook(for book: Book) -> Book {
-        
+    func editBook(_ existingBook: Book, _ newBook: Book) {
+        guard let indexPath = books.index(of: existingBook) else { return }
+        books[indexPath] = newBook
         saveToPersistentStore()
-        return book
     }
 }

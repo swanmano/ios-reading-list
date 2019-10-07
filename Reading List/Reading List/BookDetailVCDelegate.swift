@@ -10,4 +10,5 @@ import Foundation
 
 protocol BookDetailVCDelegate {
     func bookWasCreated(_ book: Book)
+    func editExistingBook(_ currentBook: Book, wasUpdated newBook: Book)
 }

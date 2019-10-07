@@ -108,6 +108,10 @@ extension ReadingListTableViewController: BookDetailVCDelegate {
         tableView.reloadData()
     }
     
+    func editExistingBook(_ currentBook: Book, wasUpdated newBook: Book) {
+        bookController.editBook(currentBook, newBook)
+        tableView.reloadData()
+    }
     
 }
 

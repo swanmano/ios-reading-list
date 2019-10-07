@@ -38,8 +38,8 @@ class BookDetailViewController: UIViewController {
         } else {
             guard let title = bookTitleText.text, !title.isEmpty,
                 let reasonToRead = reasonToReadText.text, !reasonToRead.isEmpty else { return }
-                let book = Book(title: title, reasonToRead: reasonToRead)
-            delegate?.bookWasCreated(book)
+                let newBook = Book(title: title, reasonToRead: reasonToRead)
+            delegate?.editExistingBook(book!, wasUpdated: newBook)
             self.navigationController?.popViewController(animated: true)
         }
     }
