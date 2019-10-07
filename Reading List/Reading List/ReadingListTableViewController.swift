@@ -76,14 +76,14 @@ class ReadingListTableViewController: UITableViewController {
             guard let bookDetailVC = segue.destination as? BookDetailViewController else { fatalError() }
             bookDetailVC.delegate = self
             bookDetailVC.bookController = bookController
-            bookDetailVC.book = nil
+            bookDetailVC.existingBook = nil
             tableView.reloadData()
             bookController.saveToPersistentStore()
             
         } else if segue.identifier == "EditBookSegue" {
             if let indexPath = tableView.indexPathForSelectedRow,
                 let bookDetailVC = segue.destination as? BookDetailViewController {
-                bookDetailVC.book = bookController.books[indexPath.row]
+                bookDetailVC.existingBook = bookController.books[indexPath.row]
             }
         }
     }
@@ -94,10 +94,8 @@ class ReadingListTableViewController: UITableViewController {
     // The function takes the cell from the bookButtonHasBeenTapped in BookTableViewCell, gets the index path and calls updateHasBeenRead in order to toggle the value
 extension ReadingListTableViewController: BookTableViewCellDelegate {
     func toggleHasBeenRead(for cell: BookTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let newBook = bookController.updateHasBeenRead(for: bookFor(indexPath: indexPath))
-        var book = bookFor(indexPath: indexPath)
-        book.hasBeenRead = newBook.hasBeenRead
+        guard let book = cell.book else { return }
+        bookController.updateHasBeenRead(for: book)
         tableView.reloadData()
     }
 }

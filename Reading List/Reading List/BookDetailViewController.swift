@@ -12,7 +12,8 @@ class BookDetailViewController: UIViewController {
     
     // MARK: Properties
     var bookController: BookController?
-    var book: Book?
+    var existingBook: Book?
+    
     var delegate: BookDetailVCDelegate?
     
     // MARK: Outlets
@@ -30,7 +31,7 @@ class BookDetailViewController: UIViewController {
 
     // MARK: Actions
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        if book == nil {
+        if existingBook == nil {
             guard let title = bookTitleText.text, !title.isEmpty,
                 let reasonToRead = reasonToReadText.text, !reasonToRead.isEmpty else { return }
             delegate?.bookWasCreated(Book(title: title, reasonToRead: reasonToRead))
@@ -39,18 +40,18 @@ class BookDetailViewController: UIViewController {
             guard let title = bookTitleText.text, !title.isEmpty,
                 let reasonToRead = reasonToReadText.text, !reasonToRead.isEmpty else { return }
                 let newBook = Book(title: title, reasonToRead: reasonToRead)
-            delegate?.editExistingBook(book!, wasUpdated: newBook)
+            delegate?.editExistingBook(Book(title: existingBook!.title, reasonToRead: existingBook!.reasonToRead), wasUpdated: newBook)
             self.navigationController?.popViewController(animated: true)
         }
     }
     
     // MARK: Methods
     func updateViews() {
-        guard let book = book else { return }
+        guard let existingBook = existingBook else { return }
         
-        bookTitleText.text = book.title
-        reasonToReadText.text = book.reasonToRead
-        self.title = book.title
+        bookTitleText.text = existingBook.title
+        reasonToReadText.text = existingBook.reasonToRead
+        self.title = existingBook.title
     }
     
     

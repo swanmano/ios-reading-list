@@ -76,12 +76,10 @@ class BookController {
         saveToPersistentStore()
     }
     
-    // deleted the return of type Book
-    func updateHasBeenRead(for book: Book) -> Book {
-        var book = book
-        book.hasBeenRead.toggle()
+    func updateHasBeenRead(for book: Book) {
+        guard let index = books.index(of: book) else { return }
+        books[index].hasBeenRead.toggle()
         saveToPersistentStore()
-        return book
     }
     
     // TODO: create a working editBook function
