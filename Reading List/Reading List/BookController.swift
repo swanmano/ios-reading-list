@@ -61,11 +61,12 @@ class BookController {
     }
     
     // MARK: Methods
-    func create(bookTitle title: String, reasonToRead reason: String) -> Book {
+    // deleted the return of type Book
+    func create(bookTitle title: String, reasonToRead reason: String) {
         let book = Book(title: title, reasonToRead: reason)
         books.append(book)
         saveToPersistentStore()
-        return book
+ //       return book
     }
     
     func delete(_ book: Book) {
@@ -76,11 +77,11 @@ class BookController {
     }
     
     // deleted the return of type Book
-    func updateHasBeenRead(for book: Book) {
+    func updateHasBeenRead(for book: Book) -> Book {
         var book = book
         book.hasBeenRead.toggle()
         saveToPersistentStore()
- //       return book
+        return book
     }
     
     // TODO: create a working editBook function

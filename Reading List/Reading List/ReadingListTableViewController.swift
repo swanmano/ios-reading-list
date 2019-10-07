@@ -43,12 +43,10 @@ class ReadingListTableViewController: UITableViewController {
     
     // Function separates the two sections of "Read Books" and "Unread Books", creates an array for each and then returns the correck book based on the indexpath.row
     private func bookFor(indexPath: IndexPath) -> Book {
-            let readBooks = bookController.readBook
-            let unreadBooks = bookController.unreadBook
         if indexPath.section == 0 {
-            return readBooks[indexPath.row]
+            return bookController.readBook[indexPath.row]
         } else {
-            return unreadBooks[indexPath.row]
+            return bookController.unreadBook[indexPath.row]
         }
     }
 
@@ -97,7 +95,9 @@ class ReadingListTableViewController: UITableViewController {
 extension ReadingListTableViewController: BookTableViewCellDelegate {
     func toggleHasBeenRead(for cell: BookTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-        bookController.updateHasBeenRead(for: bookFor(indexPath: indexPath))
+        let newBook = bookController.updateHasBeenRead(for: bookFor(indexPath: indexPath))
+        var book = bookFor(indexPath: indexPath)
+        book.hasBeenRead = newBook.hasBeenRead
         tableView.reloadData()
     }
 }

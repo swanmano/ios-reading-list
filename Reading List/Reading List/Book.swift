@@ -11,5 +11,5 @@ import Foundation
 struct Book: Codable, Equatable {
     let title: String
     let reasonToRead: String
-    var hasBeenRead: Bool = false
+    var hasBeenRead: Bool = true
 }
