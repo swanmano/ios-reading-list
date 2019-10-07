@@ -83,9 +83,13 @@ class BookController {
     }
     
 
-    func editBook(_ existingBook: Book, _ newBook: Book) {
-        guard let index = books.index(of: existingBook) else { return }
-        books[index] = newBook
+    func editBook(_ bookIndex: Int, _ newBook: Book) {
+//        if existingBook.hasBeenRead == true {
+//            let index = readBook.index(of: existingBook)
+//            readBook[index] = newBook
+//        }
+//        guard let index = bookIndex else { return }
+        books[bookIndex] = newBook
         
         saveToPersistentStore()
     }

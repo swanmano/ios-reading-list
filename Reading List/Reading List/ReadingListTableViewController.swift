@@ -86,6 +86,8 @@ class ReadingListTableViewController: UITableViewController {
                 bookDetailVC.delegate = self
                 bookDetailVC.bookController = bookController
                 bookDetailVC.existingBook = bookFor(indexPath: indexPath)
+                let bookIndex = bookController.books.index(of: bookFor(indexPath: indexPath))
+                bookDetailVC.bookIndex = bookIndex
             }
         }
     }
@@ -108,9 +110,8 @@ extension ReadingListTableViewController: BookDetailVCDelegate {
         tableView.reloadData()
     }
     
-    func editExistingBook(_ currentBook: Book, wasUpdated newBook: Book) {
-        let indexPath = 
-        bookController.editBook(currentBook, newBook)
+    func editExistingBook(_ bookIndex: Int, wasUpdated newBook: Book) {
+        bookController.editBook(bookIndex, newBook)
         tableView.reloadData()
     }
     

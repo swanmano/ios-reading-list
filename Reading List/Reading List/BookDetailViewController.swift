@@ -13,6 +13,7 @@ class BookDetailViewController: UIViewController {
     // MARK: Properties
     var bookController: BookController?
     var existingBook: Book?
+    var bookIndex: Int?
     
     var delegate: BookDetailVCDelegate?
     
@@ -40,7 +41,7 @@ class BookDetailViewController: UIViewController {
             guard let title = bookTitleText.text, !title.isEmpty,
                 let reasonToRead = reasonToReadText.text, !reasonToRead.isEmpty else { return }
                 let newBook = Book(title: title, reasonToRead: reasonToRead)
-            delegate?.editExistingBook(Book(title: existingBook!.title, reasonToRead: existingBook!.reasonToRead), wasUpdated: newBook)
+            delegate?.editExistingBook(bookIndex!, wasUpdated: newBook)
             self.navigationController?.popViewController(animated: true)
         }
     }
