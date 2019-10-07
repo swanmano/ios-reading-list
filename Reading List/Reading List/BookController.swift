@@ -82,10 +82,11 @@ class BookController {
         saveToPersistentStore()
     }
     
-    // TODO: create a working editBook function
+    // TODO: debugging found that the flow doesn't even make it here
     func editBook(_ existingBook: Book, _ newBook: Book) {
-        guard let indexPath = books.index(of: existingBook) else { return }
-        books[indexPath] = newBook
+        guard let index = books.index(of: existingBook) else { return }
+        books[index] = newBook
+        
         saveToPersistentStore()
     }
 }

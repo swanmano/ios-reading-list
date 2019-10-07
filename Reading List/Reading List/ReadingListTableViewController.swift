@@ -83,6 +83,8 @@ class ReadingListTableViewController: UITableViewController {
         } else if segue.identifier == "EditBookSegue" {
             if let indexPath = tableView.indexPathForSelectedRow,
                 let bookDetailVC = segue.destination as? BookDetailViewController {
+                bookDetailVC.delegate = self
+                bookDetailVC.bookController = bookController
                 bookDetailVC.existingBook = bookController.books[indexPath.row]
             }
         }
@@ -107,6 +109,7 @@ extension ReadingListTableViewController: BookDetailVCDelegate {
     }
     
     func editExistingBook(_ currentBook: Book, wasUpdated newBook: Book) {
+        let indexPath = 
         bookController.editBook(currentBook, newBook)
         tableView.reloadData()
     }
